@@ -32,17 +32,12 @@ public class QuestGame : MonoBehaviour
     private void ManageState()
     {
         var nextStates = state.GetNextStates(); //the nextStates variable is an array which holds the next possible options in the story, each scriptable object has this array with its possible continuations
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        for (int i = 0; i < nextStates.Length; i++) //in the case that the amount of elements in the next state array is not equal to the same amount of inputs possible, I have created a for loop to prevent this issue from occuring
         {
-            state = nextStates[0]; //interacting and choosing a story option, dependant on the key pressed the nextStates var will be assigned to the respective element of the key pressed.
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            state = nextStates[1];
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            state = nextStates[2];
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            {
+                state = nextStates[i]; //interacting and choosing a story option, dependant on the key pressed the nextStates var will be assigned to the respective element of the key pressed.
+            }
         }
         storyText.text = state.GetStateStory(); //after checking, the new scriptable object state replaced the story text
     }
