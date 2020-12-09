@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(menuName ="states")] //A new asset implemented into unity when creating a game object
+public class states : ScriptableObject //This script is not assigned to objects and is its own script therefore it is not derived by monobehaviour
+{
+    [TextArea(10,14)] [SerializeField] string stateStory; //changing the text area to have more space to work with vertically
+    [SerializeField] states[] nextStates; //an array variable which holds states called nextStates, can be seen in the inspector
+
+    public string GetStateStory()
+    {
+        return stateStory; //a function to return the story text which is held in the scriptable object
+    }
+
+    public states[] GetNextStates()
+    {
+        return nextStates; //returns the array embedded in the scriptable object as possible next states throughout the game.
+    }
+}
